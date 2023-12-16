@@ -35,31 +35,31 @@ export function getUserLocalStorage () {
 export async function LoginRequest (email: string, password: string) {
     try {
         const request = await Api.post("login/", { email, password });
-        console.log('request.data: ', request.status);
+        //console.log('request.data: ', request.status);
         return request.data;
     } catch (error) {
-        console.error(error);
+        //console.error(error);
         return null;
     }
 }
 
 export async function RegisterRequest ({ email, password }: { email: string, password: string }) {
     try {
-        const request = await Api.post("register", { email, password });
-        console.log('request.data: ', request.status);
+        const request = await Api.post("register/", { email, password });
+        //console.log('request.data: ', request.status);
     } catch (error) {
-        console.error(error);
         throw error;
+        console.error(error);
     }
 }
 
 export async function LogoutRequest () {
     try {
         const request = await Api.post("logout/", {}, { headers: { 'Authorization': `Token ${getUserLocalStorage()?.token}`}});
-        console.log('request.data: ', request.status);
+        //console.log('request.data: ', request.status);
     } catch (error) {
-        console.error(error);
         throw error;
+        console.error(error);
     }
 }
 
