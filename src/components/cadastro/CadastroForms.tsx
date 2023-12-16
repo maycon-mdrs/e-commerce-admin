@@ -14,6 +14,7 @@ export function CadastroForms() {
   const navigate = useNavigate();
   const [loding, setLoding] = useState(false);
   const [formData, setFormData] = useState({
+    nome: '',
     email: '',
     password: ''
   });
@@ -56,7 +57,7 @@ async function onFinish() {
         layout="vertical"
       >
         <Form.Item
-          name="name"
+          name="nome"
           rules={[
             {
               required: true,
@@ -64,7 +65,7 @@ async function onFinish() {
             },
           ]}
         >
-          <Input placeholder="Nome completo" className='input' name="name" value="name" onChange={handleChange} />
+          <Input placeholder="Nome completo" className='input' name="nome" value="nome" onChange={handleChange} />
         </Form.Item>
 
         <Form.Item
@@ -93,8 +94,8 @@ async function onFinish() {
               message: 'Por favor, inserir uma senha!',
             },
             {
-              min: 6,
-              message: 'A senha deve conter no mínimo 6 caracteres!',
+              min: 3,
+              message: 'A senha deve conter no mínimo 3 caracteres!',
             }
           ]}
         >
