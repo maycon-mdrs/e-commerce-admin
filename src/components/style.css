@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+    font-family: 'Outfit', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --bege1: #FEEFDE;
+    --bege2: #C89633;
+    --laranja: #EAAC3D;
+    --branco: #ffffff;
+    --verde-escuro: #067655;
+    --verde-claro: #0CB07F;
+    --logo: #23303d;
+    --logo2: #cf301a;
+    --logo2hover: #fc3b22;
+    --bg: #fafafa;
+}
+
+/* Titulo */
+.title {
+    color: var(--logo);
+    font-weight: bold;
+}
+
+/* input - email | senha */
+.input {
+    height: 48px;
+    border-radius: 8px;
+}
+
+Button {
+    width: 100%;
+    height: 48px !important;
+    border-radius: 8px !important;
+}
+/* botão login */
+.button {
+    background-color: var(--logo2);
+}
+.button:hover {
+    background-color: var(--logo2hover) !important;
+}
+
+/* botão cadastro */
+.button-cadastro, .button-login {
+    color: #727272;
+    border: 1px solid #BFBFBF;
+    background-color: white;
+}
+.button-cadastro:hover, .button-login:hover {
+    background-color: #E4E4E4;
+}
+
+/* esqueci minha senha */
+.a-senha {
+    cursor: pointer;
+    color: #303030;
+    text-decoration: none;
+}
+.a-senha:hover {
+    color: #303030;
+    text-decoration:underline;
+}
+
+@media (max-width: 540px) {
+    .card {
+        padding: 1rem 0 !important;
+    }
+}
