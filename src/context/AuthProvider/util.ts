@@ -62,16 +62,3 @@ export async function LogoutRequest () {
         console.error(error);
     }
 }
-
-export function setCartLocalStorage (cart: any) {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-export function getCartLocalStorage () {
-    const json = localStorage.getItem("cart");
-
-    if (!json) return null;
-
-    const cart = JSON.parse(json);
-    return cart ?? null;
-}
