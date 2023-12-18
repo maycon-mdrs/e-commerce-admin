@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getUserLocalStorage } from "../context/AuthProvider/util";
 
 /**
  * Criação de uma instância do Axios para realizar requisições à API.
@@ -11,6 +10,21 @@ export const Api = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+/**
+ * Interceptador de respostas.
+ */
+Api.interceptors.response.use(
+    response => response,
+    async error => {
+        // Verifica se o erro é 401 e toma uma ação
+        if (error.response && error.response.status === 401) {
+            console.log("Não autorizado! Redirecionando para o login...");
+        }
+        return Promise.reject(error);
+    }
+);
+
 
 /**
  * Interceptador de requisições para adicionar o token de autenticação ao cabeçalho.
