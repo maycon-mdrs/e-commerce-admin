@@ -1,4 +1,6 @@
 import axios from "axios";
+import { deleteUserLocalStorage } from "../context/AuthProvider/util";
+import { message } from "antd";
 
 /**
  * Criação de uma instância do Axios para realizar requisições à API.
@@ -12,9 +14,27 @@ export const Api = axios.create({
 });
 
 /**
+ * Inicializa a instância do Axios com um interceptador de resposta personalizado.
+ * @param {Function} onUnauthorized - Função de callback que será chamada quando uma resposta 401 for recebida.
+ */
+export const initializeAxios = (onUnauthorized: { (): void; (): void; }) => {
+    Api.interceptors.response.use(
+        response => response,
+        error => {
+            if (error.response && error.response.status === 401) {
+                onUnauthorized(); // Chama a função de callback para redirecionar
+                deleteUserLocalStorage();
+                message.error("Sessão expirada! Faça login novamente.");
+            }
+            console.log("Não autorizado! Redirecionando para o login...");
+        }
+    );
+};
+
+/**
  * Interceptador de respostas.
  */
-Api.interceptors.response.use(
+/* Api.interceptors.response.use(
     response => response,
     async error => {
         // Verifica se o erro é 401 e toma uma ação
@@ -23,8 +43,7 @@ Api.interceptors.response.use(
         }
         return Promise.reject(error);
     }
-);
-
+); */
 
 /**
  * Interceptador de requisições para adicionar o token de autenticação ao cabeçalho.
