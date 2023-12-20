@@ -1,26 +1,17 @@
-import { Nav } from 'react-bootstrap';
-import { useAuth } from '../../context/AuthProvider/useAuth';
-import { useNavigate } from 'react-router-dom';
-import { Api } from '../../services/api';
+import { MainHome } from "../../components/mainHome/MainHome";
+import { SideBar } from "../../components/sideBar/SideBar";
+import { Layout } from 'antd';
 
 export function HomePage() {
-    const auth = useAuth();
-    const navigate = useNavigate();
-    
-    function handleLogout() {
-        auth.logout();
-        navigate('/login');
-    }
-
-    async function handleTeste() {
-        await Api.get('/produtos/', { headers: { Authorization: `Token ${auth.token}` } })
-    }
-
     return (
-        <div>
-            <h1>Home</h1>
-            <button onClick={handleLogout}>SAIR</button>
-            <button onClick={handleTeste}>teste</button>
-        </div>
+        <Layout hasSider>
+            {/* SideBar */}
+            <SideBar />
+
+            {/* Main - container */}
+            <Layout className="site-layout" style={{ marginLeft: 250 }}>
+                <MainHome />
+            </Layout>
+        </Layout >
     );
 }
