@@ -1,0 +1,42 @@
+/* MENU - itens NAVBAR */
+.menu .item {
+    position: relative;
+}
+
+.menu .item span {
+    display: block;
+    color: #B0B0B0;
+    font-size: 16px;
+    padding: 5px 0;
+    line-height: 40px;
+}
+
+.menu .item a {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    margin: 5px 30px;
+    border-radius: 5px;
+    line-height: 40px;
+    text-decoration: none;
+}
+
+.menu .item a:hover {
+    background: #0482FB;
+    transition: 0.3s ease;
+}
+
+.menu .item .icon {
+    margin-right: 10px;
+    align-items: center;
+}
+
+.menu .item .sub-menu a {
+    padding-left: 10px;
+}
+
+.logout:hover {
+    background-color: red;
+}
