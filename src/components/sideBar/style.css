@@ -1,0 +1,68 @@
+:root {
+    --red: #DC3545;
+}
+
+/* ---------------------------------------- */
+/* ---------------- SideBar --------------- */
+/* ---------------------------------------- */
+.ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
+}
+
+/* item */
+.ant-menu-item {
+    border-radius: 8px;
+    margin-right: 20px !important;
+}
+
+/* item - mouse houver */
+.ant-menu-item:not(.ant-menu-item-selected):hover {
+    background-color: var(--azul-claro)!important; 
+    color: #FFFFFF !important; 
+}
+
+/* item - selecionado */
+.ant-menu-item.ant-menu-item-selected {
+    background-color: var(--azul-claro)!important;
+    color: white;
+}
+
+/* Configurações - button */
+.config-bottom a {
+    text-decoration: none;
+}
+
+.ant-menu-item:not(.ant-menu-item-selected).config-bottom:hover { 
+    background-color: #2C2C2C !important;
+}
+
+
+/* Logout - button */
+.logout-bottom { 
+   /*  background-color: #DC3545 !important; */
+}
+.logout-bottom a {
+    text-decoration: none;
+}
+
+.ant-menu-item:not(.ant-menu-item-selected).logout-bottom:hover { 
+    background-color: var(--red) !important; /* a61a28 */
+}
+
+.ant-menu-item.ant-menu-item-selected.logout-bottom { 
+    background-color: var(--azul-escuro) !important; /* a61a28 */
+}
+
+.ant-menu-item.ant-menu-item-selected.logout-bottom:hover { 
+    background-color: var(--red) !important; /* a61a28 */
+}
+
+/* Sair - button confirmação */
+.ant-btn.css-dev-only-do-not-override-190m0jy.ant-btn-primary.ant-btn-sm {
+    background-color: var(--red);
+}
+
+.ant-btn.css-dev-only-do-not-override-190m0jy.ant-btn-primary.ant-btn-sm:hover {
+    background-color: #b80f20;
+}
