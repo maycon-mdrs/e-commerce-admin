@@ -2,8 +2,9 @@ import { Button, Flex, theme } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import './style.css'
 import { Item } from "../itens/Item";
-import { getProducts  } from "../../services/getProducts";
+import { getProducts } from "../../services/getProducts";
 import { useEffect, useState } from "react";
+import { BreadCrumb } from "../BreadCrumb";
 
 export function MainHome() {
     const {
@@ -39,9 +40,10 @@ export function MainHome() {
                         {products ? products.map((product: any) => ( // Use map on the products array
                             <Item
                                 key={product.id} // Add a unique key for each item
+                                productId={product.id} // Pass the product id as a prop
                                 product={product} // Pass the product as a prop
                             />
-                        )): <p>Loading...</p>}
+                        )) : <p>Loading...</p>}
                     </Flex>
 
 
