@@ -26,7 +26,7 @@ export const initializeAxios = (onUnauthorized: { (): void; (): void; }) => {
                 deleteUserLocalStorage();
                 message.error("Sessão expirada! Faça login novamente.");
             }
-            console.log("Não autorizado! Redirecionando para o login...");
+            console.log(error);
         }
     );
 };
