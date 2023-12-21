@@ -5,6 +5,11 @@ import { Layout } from 'antd';
 
 export function HomePage() {
     return (
-        <NavBar />
+
+        <>
+            <NavBar />
+            <MainHome />
+        </>
+
     );
 }

@@ -40,3 +40,7 @@
 .logout:hover {
     background-color: red;
 }
+
+.ant-popconfirm-buttons button {
+    width: auto;
+}
