@@ -46,7 +46,7 @@ export function NavBar() {
   ];
 
   return (
-    <Navbar key={'false'} expand={'false'} className="bg-body-tertiary mb-3 ">
+    <Navbar key={'false'} expand={'false'} className="bg-body-tertiary mb-3 " style={{position: 'fixed', width: '100%'}}>
       <Container fluid style={{ flexWrap: 'nowrap' }}>
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${'false'}`} style={{ width: 'auto' }} />
         <Navbar.Brand href="#" className='title'>FRASH FAIRE</Navbar.Brand>
