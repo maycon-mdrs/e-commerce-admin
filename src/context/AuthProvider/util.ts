@@ -43,9 +43,9 @@ export async function LoginRequest (email: string, password: string) {
     }
 }
 
-export async function RegisterRequest ({ nome, email, password }: { nome: string, email: string, password: string }) {
+export async function RegisterRequest ({ name, email, password }: { name: string, email: string, password: string }) {
     try {
-        const request = await Api.post("register/", { nome, email, password });
+        const request = await Api.post("register/", { name, email, password });
         //console.log('request.data: ', request.status);
     } catch (error) {
         throw error;
