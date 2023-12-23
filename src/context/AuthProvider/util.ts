@@ -47,6 +47,7 @@ export async function RegisterRequest ({ name, email, password }: { name: string
     try {
         const request = await Api.post("register/", { name, email, password });
         //console.log('request.data: ', request.status);
+        return request.data;
     } catch (error) {
         throw error;
         console.error(error);
