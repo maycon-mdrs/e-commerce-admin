@@ -18,13 +18,13 @@
 
 /* item - mouse houver */
 .ant-menu-item:not(.ant-menu-item-selected):hover {
-    background-color: var(--azul-claro)!important; 
+    background-color: var(--logo3)!important; 
     color: #FFFFFF !important; 
 }
 
 /* item - selecionado */
 .ant-menu-item.ant-menu-item-selected {
-    background-color: var(--azul-claro)!important;
+    background-color: var(--logo3)!important;
     color: white;
 }
 
@@ -37,6 +37,17 @@
     background-color: #2C2C2C !important;
 }
 
+.ant-menu-item:not(.ant-menu-item-selected).config-bottom:hover { 
+    background-color: #2C2C2C !important; /* a61a28 */
+}
+
+.ant-menu-item.ant-menu-item-selected.config-bottom { 
+    background-color: #2C2C2C !important; /* a61a28 */
+}
+
+.ant-menu-item.ant-menu-item-selected.config-bottom:hover { 
+    background-color: #2C2C2C !important; /* a61a28 */
+}
 
 /* Logout - button */
 .logout-bottom { 
@@ -47,7 +58,7 @@
 }
 
 .ant-menu-item:not(.ant-menu-item-selected).logout-bottom:hover { 
-    background-color: var(--red) !important; /* a61a28 */
+    background-color: var(--logo3) !important; /* a61a28 */
 }
 
 .ant-menu-item.ant-menu-item-selected.logout-bottom { 
@@ -55,12 +66,16 @@
 }
 
 .ant-menu-item.ant-menu-item-selected.logout-bottom:hover { 
-    background-color: var(--red) !important; /* a61a28 */
+    background-color: var(--logo3) !important; /* a61a28 */
 }
 
 /* Sair - button confirmação */
+.ant-popconfirm-buttons button {
+    width: auto;
+    padding: 0 16px !important;  
+}
 .ant-btn.css-dev-only-do-not-override-190m0jy.ant-btn-primary.ant-btn-sm {
-    background-color: var(--red);
+    background-color: var(--logo3);
 }
 
 .ant-btn.css-dev-only-do-not-override-190m0jy.ant-btn-primary.ant-btn-sm:hover {

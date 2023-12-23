@@ -14,6 +14,7 @@
     --verde-claro: #0CB07F;
     --logo: #23303d;
     --logo2: #cf301a;
+    --logo3: #ff4d4f;
     --logo2hover: #fc3b22;
     --bg: #fafafa;
 }
@@ -30,21 +31,22 @@
     border-radius: 8px;
 }
 
-Button {
+/* botão login, cadastro */
+.button-login, .button-cadastro {
+    background-color: var(--logo2);
     width: 100%;
     height: 48px !important;
     border-radius: 8px !important;
 }
-/* botão login */
-.button {
-    background-color: var(--logo2);
+.button-login:hover {
+    background-color: var(--logo2hover) !important;
 }
-.button:hover {
+.button-cadastro:hover {
     background-color: var(--logo2hover) !important;
 }
 
 /* botão cadastro */
-.button-cadastro, .button-login {
+.button-to-cadastro, .button-to-login {
     color: #727272;
     border: 1px solid #BFBFBF;
     background-color: white;

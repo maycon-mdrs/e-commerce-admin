@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
     font-family: 'Outfit', sans-serif;
     padding: 0;
@@ -16,11 +17,13 @@
     --bg: #fafafa;
 }
 
-#login-page, #cadastro-page {
+#login-page,
+#cadastro-page {
     background-color: var(--logo);
 }
 
-#login-page::before, #cadastro-page::before {
+#login-page::before,
+#cadastro-page::before {
     content: "";
     position: fixed;
     top: 0;
@@ -29,6 +32,19 @@
     height: 100%;
     background-image: url('../images/background.jpg');
     opacity: 0.35;
+}
+
+/* SideBar with Main - HOME */
+.home-layout {
+    transition: margin-left 0.2s;
+}
+
+.home-layout.collapsed {
+    margin-left: 80px;
+}
+
+.home-layout:not(.collapsed) {
+    margin-left: 250px;
 }
 
 /* @media (max-width: 960px) {
