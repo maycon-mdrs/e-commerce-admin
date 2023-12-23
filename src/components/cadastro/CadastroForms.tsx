@@ -14,7 +14,7 @@ export function CadastroForms() {
   const navigate = useNavigate();
   const [loding, setLoding] = useState(false);
   const [formData, setFormData] = useState({
-    nome: '',
+    name: '',
     email: '',
     password: ''
   });
@@ -57,7 +57,7 @@ async function onFinish() {
         layout="vertical"
       >
         <Form.Item
-          name="nome"
+          name="name"
           rules={[
             {
               required: true,
@@ -65,7 +65,7 @@ async function onFinish() {
             },
           ]}
         >
-          <Input placeholder="Nome completo" className='input' name="nome" value="nome" onChange={handleChange} />
+          <Input placeholder="Nome completo" className='input' name="name" value="name" onChange={handleChange} />
         </Form.Item>
 
         <Form.Item
@@ -135,7 +135,7 @@ async function onFinish() {
           />
         </Form.Item>
 
-        <Button type="primary" htmlType="submit" className='button mb-3' style={{ fontSize: '16px' }}>
+        <Button type="primary" htmlType="submit" className='button-cadastro mb-3' style={{ fontSize: '16px' }}>
           {loding ? <Spin indicator={antIcon} /> : 'Cadastrar'}
         </Button>
       </Form>

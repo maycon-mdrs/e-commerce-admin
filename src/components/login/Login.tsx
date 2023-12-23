@@ -39,7 +39,7 @@ export function Login () {
 
                 {/* CADASTRO */}
                 <Link to={'/cadastro'} className='a-cadastro'>
-                    <button className='button-cadastro' style={{fontSize: '16px'}}>CADASTRE-SE GRATUITAMENTE</button>
+                    <button className='button-to-cadastro' style={{fontSize: '16px'}}>CADASTRE-SE GRATUITAMENTE</button>
                 </Link>
 
             </Card.Body>

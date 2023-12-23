@@ -30,7 +30,7 @@ export function LoginForms () {
             await auth.authenticate(values.email, values.password);
             console.log('values.email: ', values.email, ' values.password ' , values.password);
             
-            navigate("/home");
+            navigate("/home/estoques");
             message.success('Login bem-sucedido!'); // Exibir mensagem de sucesso
             //<Navigate to="/questionarios" />
             console.log('entrou')
@@ -101,7 +101,7 @@ export function LoginForms () {
             <div className='mb-4' style={{float: 'right'}}>
                 <a className='a-senha'>Esqueci minha senha!</a>
             </div>
-            <Button type='primary' htmlType='submit' className='button mb-3' style={{fontSize: '18px'}}>
+            <Button type='primary' htmlType='submit' className='button-login mb-3' style={{fontSize: '18px'}}>
                 {loding ? <Spin indicator={antIcon} /> : 'Entrar'} 
             </Button>
             </Form>{}
