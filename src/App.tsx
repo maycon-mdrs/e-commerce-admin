@@ -7,6 +7,8 @@ import { CadastroPage } from './pages/cadastro/CadastroPage';
 import { LoginPage } from './pages/login/LoginPage';
 import { HomePage } from './pages/home/HomePage';
 import { initializeAxios } from './services/api'; // Importe a função initializeAxios
+import { ConfigPage } from './pages/configuracoes/ConfigPage';
+import { Estoque } from './components/mainHome/estoque/Estoque';
 
 function App() {
   const navigate = useNavigate();
@@ -19,8 +21,12 @@ function App() {
   return (
     <Routes>
       <Route element={<PrivateRoutes />}>
-        <Route path="*" element={<Navigate to="/home" />} />
-        <Route path='/home' element={<HomePage />}></Route>
+        <Route path="*" element={<Navigate to="/home/estoque" />} />
+        <Route path='/home' element={<HomePage />}>
+          <Route index path='estoque' element={<Estoque />}></Route>
+          <Route path='config' element={<ConfigPage />}></Route>
+        </Route>
+        <Route path='/config' element={<ConfigPage />}></Route>
       </Route>
       <Route path='/cadastro' element={<CadastroPage />}></Route>
       <Route path='/login' element={<LoginPage />}></Route>
