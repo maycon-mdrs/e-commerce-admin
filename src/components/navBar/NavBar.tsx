@@ -4,6 +4,7 @@ import '../style.css';
 import { Navbar, Container, Nav, Offcanvas } from 'react-bootstrap';
 import Logo from '../../images/logo.png';
 import { useAuth } from '../../context/AuthProvider/useAuth';
+import { User } from '../user/User';
 
 import {
   AppstoreOutlined,
