@@ -13,12 +13,18 @@ import {
     ShoppingOutlined,
 } from '@ant-design/icons';
 import { Content } from "antd/es/layout/layout";
+import { ModalItem } from "../modal/ModalItem";
 
 export function Estoque() {
     const auth = useAuth();
     const [products, setProducts] = useState<any[]>([]); // Add useState hook to manage products
     const [totalValue, setTotalValue] = useState<number>(0);
     const [totalStock, setTotalStock] = useState(0);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showNewItemModal = () => {
+        setIsModalVisible(true);
+    };
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -75,9 +81,19 @@ export function Estoque() {
             }}>
 
                 <Flex wrap="wrap" gap="large" justify="center">
-                    <Button type="primary" icon={<PlusOutlined />} shape="round" style={{ width: 'auto' }} danger>
+                    <Button 
+                        type="primary" icon={<PlusOutlined />} 
+                        shape="round" 
+                        style={{ width: 'auto' }} 
+                        danger
+                        size="large"
+                        onClick={showNewItemModal}
+                    >
                         NOVO PRODUTO
                     </Button>
+
+                    <ModalItem isVisible={isModalVisible} onShowModal={setIsModalVisible} />
+
                     {products ? products.map((product: any) => ( // Use map on the products array
                         <Item
                             key={product.id} // Add a unique key for each item

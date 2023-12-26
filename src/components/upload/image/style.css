@@ -1,0 +1,7 @@
+.ant-upload-list-item, .ant-upload-list-item-done {
+    cursor: pointer;
+}
+
+.ant-upload-list-item-actions {
+    display: none !important;
+}
