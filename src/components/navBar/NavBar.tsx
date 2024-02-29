@@ -50,7 +50,7 @@ export function NavBar() {
     <Navbar key={'false'} expand={'false'} className="bg-body-tertiary mb-3 " style={{position: 'fixed', width: '100%', zIndex: 999}}>
       <Container fluid style={{ flexWrap: 'nowrap' }}>
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${'false'}`} style={{ width: 'auto' }} />
-        <Navbar.Brand href="#" className='title'>FRASH FAIRE</Navbar.Brand>
+        <Navbar.Brand href="#" className='title'>FRESH FAIRE</Navbar.Brand>
         <Navbar.Offcanvas
           id={`offcanvasNavbar-expand-${'false'}`}
           aria-labelledby={`offcanvasNavbarLabel-expand-${'false'}`}
