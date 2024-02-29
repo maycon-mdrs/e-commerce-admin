@@ -6,37 +6,7 @@ import { useAuth } from "../../../context/AuthProvider/useAuth";
 import 'bootstrap/dist/css/bootstrap.css'
 import TextArea from "antd/es/input/TextArea";
 
-export function ModalItemForms({ onFormDataChange }: any) {
-    const antIcon = <LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />;
-    const [errorMessage, setErrorMessage] = useState<string | null>(null); // Initialize error message state
-
-    const auth = useAuth();
-    const navigate = useNavigate();
-    const [loding, setLoding] = useState(false);
-
-    /* const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-        setFormData((prevFormData: any) => ({
-            ...prevFormData,
-            [e.target.name]: e.target.value,
-        }));
-    }; */
-
-    const handleChange = (e:  ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        onFormDataChange((prevFormData:any) => ({
-          ...prevFormData,
-          [name]: value
-        }));
-      };
-
-    const [form] = Form.useForm();
-
-    useEffect(() => {
-        form.validateFields().then(values => {
-            onFormDataChange(values); // Passando os dados do formulário para o componente pai
-        });
-    }, [form]);
-
+export function ModalItemForms() {
     return (
         <>
             <Form.Item
@@ -49,7 +19,7 @@ export function ModalItemForms({ onFormDataChange }: any) {
                     },
                 ]}
             >
-                <Input placeholder="Título do produto" className='input' name="title" onChange={handleChange} />
+                <Input placeholder="Título do produto" className='input' name="title" /* onChange={handleChange} */ />
             </Form.Item>
 
             <Form.Item
@@ -62,7 +32,7 @@ export function ModalItemForms({ onFormDataChange }: any) {
                     }
                 ]}
             >
-                <TextArea rows={3} placeholder=". . ." name="description" onChange={handleChange} />
+                <TextArea rows={3} placeholder=". . ." name="description" /* onChange={handleChange} */ />
             </Form.Item>
 
             <Form.Item
@@ -75,7 +45,7 @@ export function ModalItemForms({ onFormDataChange }: any) {
                     }
                 ]}
             >
-                <Input placeholder="R$00,00" className='input' name="price" onChange={handleChange} />
+                <Input placeholder="R$00,00" className='input' name="price" /* onChange={handleChange} */ />
             </Form.Item>
 
             <Form.Item
@@ -88,7 +58,7 @@ export function ModalItemForms({ onFormDataChange }: any) {
                     }
                 ]}
             >
-                <Input placeholder="0" className='input' name="quantity" onChange={handleChange} />
+                <Input placeholder="0" className='input' name="quantity" /* onChange={handleChange} */ />
             </Form.Item>
         </>
     );

@@ -54,7 +54,7 @@
     height: 48px !important;
     border-radius: 8px !important;
 }
-.button-cadastro:hover, .button-login:hover {
+.button-to-cadastro:hover, .button-to-login:hover {
     background-color: #E4E4E4;
 }
 

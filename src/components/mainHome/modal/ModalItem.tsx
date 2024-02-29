@@ -1,33 +1,87 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Upload, message, Button, Form } from 'antd';
 import { LoadingOutlined, PlusOutlined, DeleteOutlined, ShoppingOutlined } from '@ant-design/icons';
 import type { RcFile, UploadChangeParam, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { GetBase64 } from '../../upload/image/GetBase64';
 import { ModalItemForms } from './ModalItemForms';
-import { postProduct } from '../../../services/postProduct';
+import { deleteProduct, editProduct, postProduct } from '../../../services/postProduct';
+import { IProduct } from '../../itens/types';
 
-export function ModalItem({ isVisible, onShowModal }: { isVisible: boolean, onShowModal: (isVisible: boolean) => void }) {
-    const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-        price: 0,
-        quantity: 0
-    });
-    const [imageFile, setImageFile] = useState(null);
+interface ModalItemProps {
+    isVisible: boolean;
+    onShowModal: (isVisible: boolean) => void;
+}
+
+export function ModalItem({ isVisible, onShowModal, product }: ModalItemProps & { product?: any }) {
+    const [form] = Form.useForm();
+    const [imageBase64, setImageBase64] = useState<string | null>();
+    const [resetUpload, setResetUpload] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (product) {
+            form.setFieldsValue({
+                title: product.title,
+                description: product.description,
+                price: product.price,
+                quantity: product.quantity,
+            });
+            setImageBase64(product.image);
+        }
+    }, [product, form]);
+
+    const handleImageChange = (base64: string | null) => {
+        setImageBase64(base64);
+    };
 
     const handleOk = async () => {
         try {
-            await postProduct(formData);
+            const values = await form.validateFields();
+            const productData = {
+                ...values,
+                image: imageBase64,
+            };
+            if (!product) {
+                await postProduct(productData);
+            } else {
+                await editProduct(product.id, productData);
+            }
             message.success('Produto salvo com sucesso!');
+            form.resetFields();
+            setImageBase64(null);
+            setResetUpload(true); // Indica que o upload deve ser resetado
             onShowModal(false);
         } catch (error) {
-            message.error('Erro ao salvar o produto.');
-            console.error(error);
+            if (error && (error as any).errorFields) {
+                // Erro de validação do formulário
+                console.error('Validation error:', error);
+            } else {
+                // Erro na função postProduct ou outro erro
+                console.error('Error in form submission:', error);
+                message.error('Erro ao salvar o produto.');
+            }
         }
+    };
 
+    const handleDelete = async () => {
+        try {
+            if (product) {
+                await deleteProduct(product.id);
+                message.success('Produto excluído com sucesso!');
+                form.resetFields();
+                setImageBase64(null);
+                setResetUpload(true); // Indica que o upload deve ser resetado
+                onShowModal(false);
+            }
+        } catch (error) {
+            console.error('Error in form submission:', error);
+            message.error('Erro ao excluir o produto.');
+        };
     };
 
     const handleCancel = () => {
+        form.resetFields(); // Reset form fields
+        setImageBase64(null); // Reset image state
+        setResetUpload(true); // Indica que o upload deve ser resetado
         onShowModal(false);
     };
 
@@ -39,9 +93,14 @@ export function ModalItem({ isVisible, onShowModal }: { isVisible: boolean, onSh
 
     const footer = (
         <div style={{ textAlign: 'center' }}>
-            <Button key="submit" type="primary" onClick={handleOk} size='large' danger>
+            <Button className='mt-3' key="submit" type="primary" onClick={handleOk} size='large' danger>
                 Salvar
             </Button>
+            {product && (
+                <Button type="dashed" onClick={handleDelete} size='large' danger>
+                    Excluir Produto
+                </Button>
+            )}
         </div>
     );
 
@@ -50,10 +109,10 @@ export function ModalItem({ isVisible, onShowModal }: { isVisible: boolean, onSh
             title={title}
             open={isVisible}
             onCancel={handleCancel}
-            footer={''}
+            footer={footer}
         >
             <Form
-                onFinish={handleOk}
+                form={form}
                 name="register"
                 scrollToFirstError
                 layout="vertical"
@@ -61,17 +120,12 @@ export function ModalItem({ isVisible, onShowModal }: { isVisible: boolean, onSh
                 <div className="row gutters mt-4">
                     <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                         <h6 className="mb-3 text-primary">Informações</h6>
-                        <ModalItemForms onFormDataChange={setFormData} />
+                        <ModalItemForms />
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                         <h6 className="text-primary" style={{ marginBottom: 45 }}>Foto</h6>
-                        <GetBase64 />
+                        <GetBase64 onImageChange={handleImageChange} resetUpload={resetUpload} setResetUpload={setResetUpload} product={product} />
                     </div>
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                    <Button className='mt-3' htmlType="submit" type="primary" size='large' danger>
-                        Salvar
-                    </Button>
                 </div>
             </Form>
         </Modal>

@@ -1,7 +1,7 @@
 import { Button, Flex, theme } from "antd";
 import { Item } from "../../itens/Item";
 import { useAuth } from "../../../context/AuthProvider/useAuth";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { getProducts } from "../../../services/getProducts";
 import { CardsInfo } from "../cards/CardsInfo";
 
@@ -19,33 +19,42 @@ export function Estoque() {
     const auth = useAuth();
     const [products, setProducts] = useState<any[]>([]); // Add useState hook to manage products
     const [totalValue, setTotalValue] = useState<number>(0);
-    const [totalStock, setTotalStock] = useState(0);
+    const [totalStock, setTotalStock] = useState<number>(0);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [editingProduct, setEditingProduct] = useState<any | null>(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const productsData = await getProducts();
+                setProducts(productsData);
+
+                const total = productsData.reduce((acc: number, product: { price: number; quantity: number }) => acc + product.price * product.quantity,0);
+                setTotalValue(total);
+
+                const stockTotal = productsData.reduce((acc: number, product: { quantity: number }) => acc + product.quantity, 0);
+                setTotalStock(stockTotal);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    const showEditModal = (product: any) => {
+        setEditingProduct(product);
+        setIsModalVisible(true);
+    };
 
     const showNewItemModal = () => {
+        setEditingProduct('');
         setIsModalVisible(true);
     };
 
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const products = await getProducts(); // Await the promise to get the products
-            setProducts(products); // Set the products in the state
-
-            // Calculando o valor total
-            const total = products.reduce((acc: number, product: { price: number; quantity: number; }) => acc + (product.price * product.quantity), 0);
-            setTotalValue(total);
-
-            // Calculando a quantidade total de estoque
-            const totalStock = products.reduce((acc: number, product: { quantity: number; }) => acc + product.quantity, 0);
-            setTotalStock(totalStock);
-        };
-
-        fetchProducts(); // Call the fetchProducts function
-    }, []);
 
     return (
         <section style={{ minHeight: '100vh' }}>
@@ -81,10 +90,10 @@ export function Estoque() {
             }}>
 
                 <Flex wrap="wrap" gap="large" justify="center">
-                    <Button 
-                        type="primary" icon={<PlusOutlined />} 
-                        shape="round" 
-                        style={{ width: 'auto' }} 
+                    <Button
+                        type="primary" icon={<PlusOutlined />}
+                        shape="round"
+                        style={{ width: 'auto' }}
                         danger
                         size="large"
                         onClick={showNewItemModal}
@@ -92,13 +101,14 @@ export function Estoque() {
                         NOVO PRODUTO
                     </Button>
 
-                    <ModalItem isVisible={isModalVisible} onShowModal={setIsModalVisible} />
+                    <ModalItem isVisible={isModalVisible} onShowModal={setIsModalVisible} product={editingProduct} />
 
                     {products ? products.map((product: any) => ( // Use map on the products array
                         <Item
                             key={product.id} // Add a unique key for each item
                             productId={product.id} // Pass the product id as a prop
                             product={product} // Pass the product as a prop
+                            onEdit={() => showEditModal(product)}
                         />
                     )) : <p>Loading...</p>}
                 </Flex>
