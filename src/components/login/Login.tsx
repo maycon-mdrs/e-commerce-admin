@@ -21,7 +21,7 @@ export function Login () {
                     <Image src={Logo} style={{maxWidth: '120px'}}/>
                 </Card.Title>
                 <Card.Title className='d-flex justify-content-center mb-1 title'>
-                    FRASH FAIRE
+                    FRESH FAIRE
                 </Card.Title>
                 <Card.Text className="text-center px-2" style={{maxWidth: '322px'}}>
                     Cadastre-se ou faça o login para acessar o sistema!

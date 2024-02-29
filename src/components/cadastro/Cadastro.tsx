@@ -35,7 +35,7 @@ export function Cadastro () {
 
                 {/* CADASTRO */}
                 <Link to={'/login'} className='a-login'>
-                    <button className='button-to-login' style={{fontSize: '18px'}}>ENTRAR NA MINHA CONTA</button>
+                    <button className='button-to-login' style={{fontSize: '16px'}}>ENTRAR NA MINHA CONTA</button>
                 </Link>
             </Card.Body>
         </Card>
